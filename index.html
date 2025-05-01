@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramos_Impocar - Concesionario de Vehículos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Estilos personalizados */
+        :root {
+            --primary-color: #dc3545;
+            --secondary-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .featured-cars {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+
+        .car-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .car-card img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .services-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 30px;
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            height: 100%;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        .btn-vehiculos {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-vehiculos:hover {
+            background-color: #c82333;
+            transform: scale(1.05);
+            color: white;
+        }
+
+        /* Ajustes para el navbar */
+        .navbar {
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled .nav-link, 
+        .navbar.scrolled .navbar-brand {
+            color: var(--secondary-color) !important;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 15px auto 0;
+        }
+
+        .stats-section {
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Ramos<span>Impocar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1 class="display-3 fw-bold mb-4">Encuentra el auto de tus sueños</h1>
+                    <p class="lead mb-5">Ofrecemos la mayor selección de vehículos de lujo y alta gama con las mejores condiciones de financiamiento del mercado.</p>
+                    <a href="catalogo.html" class="btn btn-vehiculos btn-lg me-3">Ver Catálogo</a>
+                    <a href="contacto.html" class="btn btn-outline-light btn-lg">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">250+</div>
+                        <div class="stat-text">Vehículos en stock</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-text">Marcas disponibles</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-text">Clientes satisfechos</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-text">Años de experiencia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="featured-cars">
+        <div class="container">
+            <h2 class="section-title">Vehículos Destacados</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card car-card">
+                        <img src="/Mercedes Benz C-Class.jpg" class="card-img-top" alt="Mercedes">
+                        <div class="card-body">
+                            <h5 class="card-title">Mercedes Benz C-Class</h5>
+                            <p class="card-text text-muted">2023 • 0 km • Automático</p>
+                            <p class="card-text fw-bold fs-5 text-danger">Q45,000</p>
+                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#carModal1">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card car-card">
+                        <img src="/BMW Serie 3.jpg" class="card-img-top" alt="BMW">
+                        <div class="card-body">
+                            <h5 class="card-title">BMW Serie 3</h5>
+                            <p class="card-text text-muted">2023 • 0 km • Automático</p>
+                            <p class="card-text fw-bold fs-5 text-danger">Q42,500</p>
+                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#carModal2">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card car-card">
+                        <img src="/Audi A43.jpeg" class="card-img-top" alt="Audi">
+                        <div class="card-body">
+                            <h5 class="card-title">Audi A4</h5>
+                            <p class="card-text text-muted">2023 • 0 km • Automático</p>
+                            <p class="card-text fw-bold fs-5 text-danger">Q41,900</p>
+                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#carModal3">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="catalogo.html" class="btn btn-vehiculos">Ver todos los vehículos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-file-signature"></i></div>
+                        <h4>Financiamiento Personalizado</h4>
+                        <p>Ofrecemos planes de financiamiento adaptados a tus necesidades con las tasas más competitivas del mercado.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-tools"></i></div>
+                        <h4>Servicio Técnico Premium</h4>
+                        <p>Contamos con técnicos certificados que utilizan equipamiento de última generación para el mantenimiento de tu vehículo.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-sync-alt"></i></div>
+                        <h4>Plan de Renovación</h4>
+                        <p>Cambia tu auto cada 2-3 años y mantente siempre con lo último en tecnología automotriz.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Garantía Extendida</h4>
+                        <p>Protege tu inversión con nuestras opciones de garantía extendida que cubren más componentes y por más tiempo.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-car"></i></div>
+                        <h4>Pruebas de Manejo</h4>
+                        <p>Experimenta el vehículo antes de comprarlo con nuestras pruebas de manejo personalizadas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <h4>Compra tu Usado</h4>
+                        <p>Recibimos tu vehículo usado como parte de pago con valuaciones justas y transparentes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="logo-text mb-4">Ramos<span>Impocar</span></div>
+                    <p>La mejor experiencia en compra de vehículos de lujo y alta gama con atención personalizada y las mejores condiciones del mercado.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="mb-4">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="catalogo.html" class="text-white text-decoration-none">Catálogo</a></li>
+                        <li class="mb-2"><a href="contacto.html" class="text-white text-decoration-none">Contacto</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-4">Servicios</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Financiamiento</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Servicio Técnico</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Plan de Renovación</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Garantía Extendida</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-4">Contacto</h5>
+                    <ul class="list-unstyled">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Km 279 machacas puerto barrios Izabal</li>
+                            <li class="mb-2"><i class="fas fa-phone me-2"></i> +502 51858901</li>
+                            <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@ramosimpocar.com</li>
+                            <li class="mb-2"><i class="fas fa-clock me-2"></i> Lunes a Viernes: 9am - 7pm</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4 bg-light">
+            <p class="text-center mb-0">&copy; 2025 Ramos_Impocar. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para detalles de vehículos -->
+    <div class="modal fade" id="carModal1" tabindex="-1" aria-labelledby="carModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModalLabel1">Mercedes Benz C-Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carousel1" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/Mercedes Benz C-Class.jpg" class="d-block w-100" alt="Mercedes 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/Mercedes Benz C-Class.jpg" class="d-block w-100" alt="Mercedes 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/Mercedes Benz C-Class3.jpg" class="d-block w-100" alt="Mercedes 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Descripción</h5>
+                            <p>El Mercedes-Benz Clase C combina elegancia, tecnología y rendimiento en un paquete sofisticado. Con su interior lujoso y características de seguridad avanzadas, este sedán premium ofrece una experiencia de conducción excepcional.</p>
+                            
+                            <h5 class="mt-4">Especificaciones</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Modelo:</strong> C300 4MATIC</li>
+                                <li><strong>Año:</strong> 2023</li>
+                                <li><strong>Kilometraje:</strong> 0 km</li>
+                                <li><strong>Transmisión:</strong> Automática 9 velocidades</li>
+                                <li><strong>Motor:</strong> 2.0L Turbo 4 cilindros</li>
+                                <li><strong>Potencia:</strong> 255 hp</li>
+                                <li><strong>Combustible:</strong> Gasolina</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Color</h5>
+                            <div class="color-box mb-3" style="background-color: #1F1F1F; width: 50px; height: 50px; border-radius: 5px; border: 1px solid #ddd;"></div>
+                            <p>Negro Obsidiana Metálico</p>
+                            
+                            <h5 class="mt-4">Equipamiento</h5>
+                            <ul>
+                                <li>Asientos de cuero con calefacción</li>
+                                <li>Sistema de infoentretenimiento MBUX</li>
+                                <li>Pantalla táctil de 10.25"</li>
+                                <li>Asistente de estacionamiento</li>
+                                <li>Control de crucero adaptativo</li>
+                                <li>Faros LED inteligentes</li>
+                                <li>Techo panorámico</li>
+                            </ul>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <h4 class="mb-0 text-danger">$45,000</h4>
+                                <button class="btn btn-danger">Solicitar información</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="carModal2" tabindex="-1" aria-labelledby="carModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModalLabel2">BMW Serie 3</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carousel2" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/BMW Serie 31.jpeg" class="d-block w-100" alt="BMW 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/BMW Serie 3.jpg" class="d-block w-100" alt="BMW 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/BMW Serie 32.jpeg" class="d-block w-100" alt="BMW 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Descripción</h5>
+                            <p>El BMW Serie 3 es el sedán deportivo por excelencia, que combina un diseño dinámico con un rendimiento excepcional. Con su interior premium y tecnología innovadora, ofrece una experiencia de conducción inigualable.</p>
+                            
+                            <h5 class="mt-4">Especificaciones</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Modelo:</strong> 330i xDrive</li>
+                                <li><strong>Año:</strong> 2023</li>
+                                <li><strong>Kilometraje:</strong> 0 km</li>
+                                <li><strong>Transmisión:</strong> Automática 8 velocidades</li>
+                                <li><strong>Motor:</strong> 2.0L Turbo 4 cilindros</li>
+                                <li><strong>Potencia:</strong> 255 hp</li>
+                                <li><strong>Combustible:</strong> Gasolina</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Color</h5>
+                            <div class="color-box mb-3" style="background-color: #0F4C81; width: 50px; height: 50px; border-radius: 5px; border: 1px solid #ddd;"></div>
+                            <p>Azul Mineral Metálico</p>
+                            
+                            <h5 class="mt-4">Equipamiento</h5>
+                            <ul>
+                                <li>Asientos deportivos de cuero</li>
+                                <li>Sistema iDrive 7.0</li>
+                                <li>Pantalla táctil de 10.25"</li>
+                                <li>Asistente de conducción profesional</li>
+                                <li>Control de crucero adaptativo</li>
+                                <li>Faros LED adaptativos</li>
+                                <li>Volante multifunción</li>
+                            </ul>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <h4 class="mb-0 text-danger">Q42,500</h4>
+                                <button class="btn btn-danger">Solicitar información</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade" id="carModal3" tabindex="-1" aria-labelledby="carModalLabel3" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carModalLabel3">Audi A4</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carousel3" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/Audi A41.jpeg" class="d-block w-100" alt="Audi 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/Audi A42.jpeg" class="d-block w-100" alt="Audi 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/Audi A43.jpeg" class="d-block w-100" alt="Audi 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Descripción</h5>
+                            <p>El Audi A4 es un sedán de lujo que combina diseño sofisticado, tecnología avanzada y rendimiento excepcional. Con su interior premium y características innovadoras, ofrece una experiencia de conducción refinada y cómoda.</p>
+                            
+                            <h5 class="mt-4">Especificaciones</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Modelo:</strong> A4 45 TFSI quattro</li>
+                                <li><strong>Año:</strong> 2023</li>
+                                <li><strong>Kilometraje:</strong> 0 km</li>
+                                <li><strong>Transmisión:</strong> Automática S tronic 7 velocidades</li>
+                                <li><strong>Motor:</strong> 2.0L Turbo 4 cilindros</li>
+                                <li><strong>Potencia:</strong> 261 hp</li>
+                                <li><strong>Combustible:</strong> Gasolina</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Color</h5>
+                            <div class="color-box mb-3" style="background-color: #E6E6E6; width: 50px; height: 50px; border-radius: 5px; border: 1px solid #ddd;"></div>
+                            <p>Gris Daytona Perla</p>
+                            
+                            <h5 class="mt-4">Equipamiento</h5>
+                            <ul>
+                                <li>Asientos de cuero con calefacción</li>
+                                <li>Sistema MMI Navigation plus</li>
+                                <li>Pantalla táctil de 10.1"</li>
+                                <li>Asistente de estacionamiento plus</li>
+                                <li>Audi pre sense city</li>
+                                <li>Faros Matrix LED</li>
+                                <li>Virtual Cockpit digital</li>
+                            </ul>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <h4 class="mb-0 text-danger">$41,900</h4>
+                                <button class="btn btn-danger">Solicitar información</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript para el navbar -->
+    <script>
+        // Cambiar navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+
+        // Inicializar carruseles en los modales
+        document.addEventListener('DOMContentLoaded', function() {
+            var carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(function(carousel) {
+                new bootstrap.Carousel(carousel, {
+                    interval: 5000,
+                    ride: 'carousel'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

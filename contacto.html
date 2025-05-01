@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - RamosImpocar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #dc3545;
+            --secondary-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 80px;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar {
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(52, 58, 64, 0.95) !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled .nav-link, 
+        .navbar.scrolled .navbar-brand {
+            color: white !important;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .contact-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-header h1 {
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px 0;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+        
+        .logo-img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .contact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            padding: 30px;
+            text-align: center;
+            height: 100%;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .btn-contact {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            color: white;
+            margin-top: 15px;
+        }
+        
+        .btn-contact:hover {
+            background-color: #c82333;
+            color: white;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        .motivation-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-img {
+                max-width: 300px;
+            }
+            
+            .contact-header {
+                padding: 70px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Ramos<span>Impocar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Contáctanos</h1>
+            <p class="lead">Estamos aquí para ayudarte a encontrar el vehículo perfecto para tus necesidades</p>
+        </div>
+    </section>
+
+    <!-- Logo Grande -->
+    <div class="container">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="RamosImpocar" class="logo-img">
+        </div>
+    </div>
+
+    <!-- Motivation Text -->
+    <div class="container">
+        <div class="motivation-text">
+            <p>En <strong>RamosImpocar</strong> nos preocupamos por brindarte la mejor experiencia en la compra de tu vehículo. Nuestro equipo de expertos está listo para asesorarte y responder todas tus preguntas. ¡No dudes en contactarnos por cualquiera de nuestros canales disponibles!</p>
+            <p>Estamos comprometidos con tu satisfacción y te garantizamos transparencia, honestidad y las mejores condiciones del mercado automotriz.</p>
+        </div>
+    </div>
+
+    <!-- Contact Options -->
+    <div class="container">
+        <div class="row">
+            <!-- Facebook -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Síguenos en nuestra página de Facebook para ver nuestras últimas promociones y vehículos disponibles.</p>
+                    <a href="https://www.facebook.com/share/1BY5HjRrXP/?mibextid=wwXIfr" target="_blank" class="btn btn-contact">
+                        <i class="fab fa-facebook-f me-2"></i> Visitar Facebook
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Instagram -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>Mira fotos y videos exclusivos de nuestros vehículos en nuestro perfil de Instagram.</p>
+                    <a href="https://instagram.com/ramosimpocar" target="_blank" class="btn btn-contact">
+                        <i class="fab fa-instagram me-2"></i> Visitar Instagram
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Teléfono -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>Línea directa para atención personalizada y consultas inmediatas.</p>
+                    <a href="tel:+50251858901" class="btn btn-contact">
+                        <i class="fas fa-phone-alt me-2"></i> +502 51858901
+                    </a>
+                </div>
+            </div>
+            
+            <!-- WhatsApp -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Contáctanos por WhatsApp para una comunicación rápida y directa.</p>
+                    <a href="https://wa.me/50251858901" target="_blank" class="btn btn-contact">
+                        <i class="fab fa-whatsapp me-2"></i> Enviar mensaje
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Ubicación -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Ubicación</h3>
+                    <p>Visita en Km 279 machacas puerto barrios Izabal para ver nuestros vehículos en persona y recibir asesoría especializada.</p>
+                    <a href="https://www.google.com/maps/dir//Machacas/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x8f66db69bd00bfa1:0x55e1b08ddb24b181!3e0?sa=X&ved=1t:2040&ictx=111" target="_blank" class="btn btn-contact">
+                        <i class="fas fa-map-marker-alt me-2"></i> Ver en mapa
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Horario -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <h3>Horario de atención</h3>
+                    <p>Lunes a Viernes: 9:00 AM - 7:00 PM<br>
+                    Sábados: 9:00 AM - 2:00 PM<br>
+                    Domingos: Cerrado</p>
+                    <button class="btn btn-contact" data-bs-toggle="modal" data-bs-target="#scheduleModal">
+                        <i class="far fa-calendar-alt me-2"></i> Agendar cita
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="logo-text mb-4">Ramos<span>Impocar</span></div>
+                    <p>La mejor experiencia en compra de vehículos con atención personalizada y las mejores condiciones del mercado.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/share/1BY5HjRrXP/?mibextid=wwXIfr" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/ramosimpocar" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="mb-4">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="catalogo.html" class="text-white text-decoration-none">Catálogo</a></li>
+                        <li class="mb-2"><a href="contacto.html" class="text-white text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-4">Servicios</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Financiamiento</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Garantías</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Inspección vehicular</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-4">Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Km 279 machacas puerto barrios Izabal</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +502 51858901</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@ramosimpocar.com</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Lunes a Viernes: 9am - 7pm</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4 bg-light">
+            <p class="text-center mb-0">&copy; 2025 RamosImpocar. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Schedule Modal -->
+    <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="scheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scheduleModalLabel">Agendar cita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="scheduleName" class="form-label">Nombre completo</label>
+                            <input type="text" class="form-control" id="scheduleName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="schedulePhone" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="schedulePhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduleDate" class="form-label">Fecha preferida</label>
+                            <input type="date" class="form-control" id="scheduleDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduleTime" class="form-label">Hora preferida</label>
+                            <input type="time" class="form-control" id="scheduleTime" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduleComments" class="form-label">Comentarios adicionales</label>
+                            <textarea class="form-control" id="scheduleComments" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Agendar cita</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+
+        // Initialize tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+</html>
